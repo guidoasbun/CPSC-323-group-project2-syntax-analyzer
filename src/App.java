@@ -13,7 +13,7 @@ public class App {
         System.out.println("Parsing test for: (id+id)*id$");
         parser.parseString("(id+id)*id$");
         System.out.println("\n\nParsing test for: id*id$");
-        parser.parseString("id *id$");
+        parser.parseString("id*id$");
         System.out.println("\n\nParsing test for: (id*)$");
         parser.parseString("(id*)$");
 

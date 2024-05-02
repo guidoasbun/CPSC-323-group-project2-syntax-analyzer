@@ -172,7 +172,7 @@ public class LRParser {
                 break;
         }
 
-    
+        // Use the GOTO table of the state now on top of the stack to find the next state
         String nonTerminal = getNonTerminalForProduction(action);
         Integer gotoState = states[stack.peek()].getGoto(nonTerminal);
         stack.push(gotoState);
