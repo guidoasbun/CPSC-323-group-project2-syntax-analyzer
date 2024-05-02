@@ -82,7 +82,7 @@ public class LRParser {
             char ch = input.charAt(i);
 
             if (ch == ' ') {
-                continue; // Skip spaces
+                continue;
             }
 
             if ( ch == '(' || ch == '+' || ch == '*' || ch == ')' || ch == '$') {
@@ -156,7 +156,6 @@ public class LRParser {
     }
 
     private void handleReduction(Deque<Integer> stack, String action) {
-        // Determine which production rule the reduction corresponds to
         switch (action) {
             case "R1": // E → E + T
                 stack.pop(); stack.pop(); stack.pop();
@@ -172,7 +171,6 @@ public class LRParser {
                 break;
         }
 
-        // Use the GOTO table of the state now on top of the stack to find the next state
         String nonTerminal = getNonTerminalForProduction(action);
         Integer gotoState = states[stack.peek()].getGoto(nonTerminal);
         stack.push(gotoState);
