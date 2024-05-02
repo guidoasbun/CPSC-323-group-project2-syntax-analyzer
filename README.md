@@ -1,4 +1,4 @@
-# Syntax Analyzer (Lexer)
+# Syntax Analyzer
 
 ## Contributors
 
