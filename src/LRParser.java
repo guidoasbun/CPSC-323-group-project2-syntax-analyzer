@@ -16,10 +16,6 @@ public class LRParser {
             states[i] = new ParserState();
         }
 
-        // Initialize state transitions and actions based on LR table provided
-        // States initialization as described earlier in your setup
-
-        // Populating the states with actions and goTo based on the provided LR table
         states[0].actions.put("id", "S5");
         states[0].actions.put("(", "S4");
         states[0].goTo.put("E", 1);
@@ -176,7 +172,7 @@ public class LRParser {
                 break;
         }
 
-        // Use the GOTO table of the state now on top of the stack to find the next state
+    
         String nonTerminal = getNonTerminalForProduction(action);
         Integer gotoState = states[stack.peek()].getGoto(nonTerminal);
         stack.push(gotoState);
