@@ -7,10 +7,10 @@ public class LRParser {
     private ParserState[] states;
 
     public LRParser() {
-        initializeStates();
+        initializeLRTable();
     }
 
-    private void initializeStates() {
+    private void initializeLRTable() {
         states = new ParserState[12];
         for (int i = 0; i < states.length; i++) {
             states[i] = new ParserState();
@@ -137,25 +137,25 @@ public class LRParser {
             String token = tokens.get(index);
             String action = states[state].getAction(token);
 
-            System.out.printf("%-8d|%-15s|%-13s|%-14s%n", step++, stack.toString(), token, action);
+            System.out.printf("%-8d|%-15s|%-13s|%-14s%n", step++, stack, token, action);
 
             if (action.equals("acc")) {
-                System.out.printf("%-8d|%-15s|%-13s|%-14s%n", step, stack.toString(), " ", "Accept");
+                System.out.printf("%-8d|%-15s|%-13s|%-14s%n", step, stack, " ", "Accept");
                 return;
             } else if (action.startsWith("S")) {
                 Integer newState = Integer.parseInt(action.substring(1));
                 stack.push(newState);
                 index++;
             } else if (action.startsWith("R")) {
-                handleReduction(stack, action);
+                handleCFG(stack, action);
             } else {
-                System.out.printf("%-8d|%-15s|%-13s|%-14s%n", step, stack.toString(), " ", "Error: Not Accepted");
+                System.out.printf("%-8d|%-15s|%-13s|%-14s%n", step, stack, " ", "Error: Not Accepted");
                 return;
             }
         }
     }
 
-    private void handleReduction(Deque<Integer> stack, String action) {
+    private void handleCFG(Deque<Integer> stack, String action) {
         switch (action) {
             case "R1": // E → E + T
                 stack.pop(); stack.pop(); stack.pop();

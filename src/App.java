@@ -8,8 +8,9 @@
 import java.util.Scanner;
 
 public class App {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args){
         LRParser parser = new LRParser();
+
         System.out.println("Parsing test for: (id+id)*id$");
         parser.parseString("(id+id)*id$");
         System.out.println("\n\nParsing test for: id*id$");
